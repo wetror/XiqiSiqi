@@ -14,13 +14,13 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
 
-    <!-- 頂部宣告欄 (刪除中文語言選項，僅保留 English 與 Khmer) -->
+    <!-- Top Announcement Bar -->
     <div class="bg-slate-900 text-gray-300 text-xs py-1.5 px-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <span id="txt-top-announcement" data-i18n="top-announcement">🌐 Shenzhen XiqiSiqi Electronic Technology Co., Ltd. | Official B2B Wholesale Platform</span>
             <div class="flex items-center gap-4">
                 <span><i class="fa-solid fa-globe mr-1"></i> <span id="txt-lang-label" data-i18n="lang-label">Language:</span></span>
-                <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-slate-800 text-white text-xs px-2 py-0.5 rounded border border-slate-700 outline-none">
+                <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-slate-800 text-white text-xs px-2 py-0.5 rounded border border-slate-700 outline-none cursor-pointer">
                     <option value="en">English</option>
                     <option value="km">ភាសាខ្មែរ (Khmer)</option>
                 </select>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <!-- 主要導覽列 -->
+    <!-- Navigation Bar -->
     <nav class="bg-white shadow-sm border-b sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')">
@@ -60,9 +60,9 @@
         </div>
     </nav>
 
-    <!-- 主要內容區塊 -->
+    <!-- Main Content Area -->
     <main class="flex-grow">
-        <!-- 1. 首頁 (Home) -->
+        <!-- 1. Home Section -->
         <section id="view-home" class="space-y-12 pb-12">
             <div class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white py-16 px-4">
                 <div class="max-w-7xl mx-auto text-center space-y-4">
@@ -73,27 +73,21 @@
                 </div>
             </div>
 
-            <!-- 熱門商品卡片展示 -->
+            <!-- Featured Highlights -->
             <div class="max-w-7xl mx-auto px-4 space-y-6">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <h3 class="text-2xl font-bold text-gray-900 border-l-4 border-blue-600 pl-3" data-i18n="featured-title">Featured Highlights</h3>
-                    <div id="adminControlArea" class="hidden flex items-center gap-3">
-                        <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-bold" data-i18n="admin-mode">👑 Admin Mode</span>
-                        <button id="toggleEditModeBtn" onclick="toggleEditMode()" class="bg-amber-600 hover:bg-amber-500 text-white text-xs px-3 py-1.5 rounded-lg transition font-bold shadow flex items-center gap-1.5">
-                            <i class="fa-solid fa-pen-to-square"></i> <span id="editModeBtnText" data-i18n="btn-edit-mode">Enable Image Edit</span>
-                        </button>
-                    </div>
                 </div>
                 <div id="featuredGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
             </div>
         </section>
 
-        <!-- 2. 全系列產品目錄 -->
+        <!-- 2. Product Catalog Section -->
         <section id="view-products" class="max-w-7xl mx-auto px-4 py-8 space-y-6 hidden">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900" data-i18n="catalog-title">Product Catalog</h2>
-                    <p class="text-xs text-gray-500" id="catalogSubText" data-i18n="catalog-subtitle">Showing all 36 OEM/ODM electronics items</p>
+                    <p class="text-xs text-gray-500" id="catalogSubText" data-i18n="catalog-subtitle">Showing all 36 OEM/ODM electronics items with customizable ordering & model selection</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
                     <button onclick="switchCategory('all')" class="cat-btn bg-blue-600 text-white text-xs px-3 py-1.5 rounded-lg transition" data-cat="all" id="catBtnAll" data-i18n="cat-all">All (36)</button>
@@ -107,7 +101,7 @@
             <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
 
-        <!-- 3. 客戶反饋 (Customer Feedback - 26 位回饋) -->
+        <!-- 3. Customer Feedback Section -->
         <section id="view-feedback" class="max-w-5xl mx-auto px-4 py-12 space-y-8 hidden">
             <div class="text-center space-y-2 border-b pb-6">
                 <h2 class="text-3xl font-extrabold text-gray-900" data-i18n="feedback-main-title">💬 Customer Feedback & Reviews</h2>
@@ -145,7 +139,7 @@
             </div>
         </section>
 
-        <!-- 4. 關於我們 (About Us) -->
+        <!-- 4. About Us Section -->
         <section id="view-about" class="max-w-4xl mx-auto px-4 py-12 space-y-8 hidden">
             <div class="text-center space-y-2 border-b pb-6">
                 <h2 class="text-3xl font-extrabold text-gray-900" data-i18n="about-main-title">🏢 About Us</h2>
@@ -199,28 +193,7 @@
         </section>
     </main>
 
-    <!-- 圖片編輯 Modal -->
-    <div id="imageEditModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl space-y-4">
-            <button onclick="closeImageEditModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-xl font-bold">✕</button>
-            <h3 class="font-bold text-lg text-gray-900 border-b pb-2" data-i18n="admin-modal-title">👑 Admin: Change Product Image</h3>
-            <div id="editModalPreview" class="flex justify-center">
-                <img id="previewImg" src="" class="w-32 h-32 object-cover rounded-xl border shadow-sm">
-            </div>
-            <div class="space-y-3">
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1" data-i18n="admin-modal-label">Enter New Image URL:</label>
-                    <input type="text" id="newImgUrlInput" placeholder="https://example.com/image.jpg" class="w-full border rounded-lg px-3 py-2 text-xs outline-none focus:border-blue-600">
-                </div>
-                <div class="flex gap-2">
-                    <button onclick="saveNewProductImage()" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl transition text-xs" data-i18n="admin-modal-confirm">Confirm</button>
-                    <button onclick="closeImageEditModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold px-4 py-2.5 rounded-xl transition text-xs" data-i18n="admin-modal-cancel">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 商品詳情 Modal -->
+    <!-- Product Details Modal -->
     <div id="detailModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
         <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl">
             <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-xl font-bold">✕</button>
@@ -228,7 +201,7 @@
         </div>
     </div>
 
-    <!-- 登入/註冊 Modal -->
+    <!-- Auth Modal -->
     <div id="authModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl space-y-4">
             <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-xl font-bold">✕</button>
@@ -237,7 +210,6 @@
                 <button onclick="switchAuthTab('register')" id="tabRegBtn" class="font-medium text-gray-500 pb-1 text-sm" data-i18n="auth-tab-reg">Register Account</button>
             </div>
 
-            <!-- 登入表單 -->
             <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 pt-2">
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1" data-i18n="auth-email-label">Email / Account</label>
@@ -250,7 +222,6 @@
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl transition text-xs" data-i18n="auth-btn-login">Login Now</button>
             </form>
 
-            <!-- 註冊表單 -->
             <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4 pt-2 hidden">
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1" data-i18n="auth-company">Company Name / Name</label>
@@ -269,7 +240,7 @@
         </div>
     </div>
 
-    <!-- 購物車 Modal -->
+    <!-- Cart Modal -->
     <div id="cartModal" class="fixed inset-0 bg-black/60 z-50 flex justify-end hidden backdrop-blur-sm">
         <div class="bg-white w-full max-w-md h-full p-6 flex flex-col justify-between shadow-xl overflow-y-auto">
             <div class="space-y-4">
@@ -306,7 +277,7 @@
         </div>
     </div>
 
-    <!-- 頁尾 -->
+    <!-- Footer -->
     <footer id="mainFooter" class="bg-slate-900 text-gray-400 text-xs py-10 px-4 mt-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto text-center space-y-3">
             <h4 class="text-white font-bold text-sm">Shenzhen XiqiSiqi Electronic Technology Co., Ltd.</h4>
@@ -315,7 +286,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript 數據與邏輯 -->
+    <!-- JavaScript Data and Logic -->
     <script>
         const translations = {
             'en': {
@@ -334,8 +305,6 @@
                 'hero-desc': 'Explore our full line of {count} high-quality fast chargers, car mounts, protective cases, and audio gear.',
                 'hero-btn': 'Browse All {count} Products',
                 'featured-title': 'Featured Highlights',
-                'admin-mode': '👑 Admin Mode',
-                'btn-edit-mode': 'Enable Image Edit',
                 'catalog-title': 'Product Catalog',
                 'catalog-subtitle': 'Showing all {count} OEM/ODM electronics items with customizable ordering & model selection',
                 'cat-all': 'All ({count})',
@@ -343,7 +312,7 @@
                 'cat-car': 'Car Accessories ({count})',
                 'cat-case': 'Cases & Protection ({count})',
                 'cat-audio': 'Audio & Cables ({count})',
-                'feedback-main-title': '🏢 Customer Feedback & Reviews',
+                'feedback-main-title': '💬 Customer Feedback & Reviews',
                 'feedback-subtitle': 'See what our global B2B wholesale partners say about our products and services.',
                 'feedback-form-title': '📝 Leave Your Feedback',
                 'feedback-name-label': 'Your Name / Company Name',
@@ -386,10 +355,6 @@
                 'cart-address-label': 'Delivery Address',
                 'footer-info': 'Bantian, Longgang District, Shenzhen, China | Email: XiqiSiqi@gmail.com | Hotline: +85566267927',
                 'btn-details': 'Details', 'btn-addcart': 'Add to Cart',
-                'admin-modal-title': '👑 Admin: Change Product Image',
-                'admin-modal-label': 'Enter New Image URL:',
-                'admin-modal-confirm': 'Confirm',
-                'admin-modal-cancel': 'Cancel'
             },
             'km': {
                 'top-announcement': '🌐 ក្រុមហ៊ុន ស៊ិនជិន ស៊ីគីស៊ីគី អេឡិចត្រូនិក | ប្រព័ន្ធលក់ដុំ B2B ផ្លូវការ',
@@ -407,8 +372,6 @@
                 'hero-desc': 'ស្វែងរកផលិតផលសាកថ្មលឿន ឈ្នាន់ទូរស័ព្ទ និងសម្ភារៈការពារចំនួន {count} មុខ។',
                 'hero-btn': 'មើលផលិតផលទាំងអស់ ({count})',
                 'featured-title': 'ផលិតផលលេចធ្លោ',
-                'admin-mode': '👑 របៀបអ្នកគ្រប់គ្រង',
-                'btn-edit-mode': 'កែសម្រួលរូបភាព',
                 'catalog-title': 'កាតាឡុកផលិតផល',
                 'catalog-subtitle': 'បង្ហាញផលិតផល OEM/ODM ចំនួន {count}',
                 'cat-all': 'ទាំងអស់ ({count})',
@@ -416,37 +379,37 @@
                 'cat-car': 'សម្ភារៈឡាន ({count})',
                 'cat-case': 'ស្រោមការពារ ({count})',
                 'cat-audio': 'អូឌីយ៉ូ និងខ្សែ ({count})',
-                'feedback-main-title': '🏢 មតិយោបល់ និងការវាយតម្លៃអតិថិជន',
-                'feedback-subtitle': 'សូមមើលអ្វីដែលដៃគូអាជីវកម្ម B2B និយាយអំពីផលិតផល និងសេវាកម្មរបស់យើង។',
-                'feedback-form-title': '📝 ទុកមតិយោបល់របស់អ្នក',
+                'feedback-main-title': '💬 មតិយោបល់ និងការវាយតម្លៃអតិថិជន',
+                'feedback-subtitle': 'មើលអ្វីដែលដៃគូអាជីវកម្ម B2B របស់យើងនិយាយអំពីផលិតផល និងសេវាកម្មរបស់យើង។',
+                'feedback-form-title': '📝 បញ្ចូលមតិយោបល់របស់អ្នក',
                 'feedback-name-label': 'ឈ្មោះរបស់អ្នក / ឈ្មោះក្រុមហ៊ុន',
-                'feedback-rating-label': 'កម្រិតផ្កាយ',
-                'feedback-msg-label': 'ខ្លឹមសារមតិយោបល់',
-                'feedback-submit-btn': 'ដាក់ស្នោមតិយោបល់',
+                'feedback-rating-label': 'ការវាយតម្លៃជាផ្កាយ',
+                'feedback-msg-label': 'សារមតិយោបល់',
+                'feedback-submit-btn': 'ផ្ញើមតិយោបល់',
                 'feedback-list-title': '🌟 ការវាយតម្លៃពីដៃគូ',
                 'about-main-title': '🏢 អំពីពួកយើង',
                 'about-h1': '🔷 ប្រវត្តិក្រុមហ៊ុន',
-                'about-p1': 'ក្រុមហ៊ុន ស៊ិនជិន ស៊ីគីស៊ីគី អេឡិចត្រូនិក គឺជាអ្នកផ្គត់ផ្គង់លក់ដុំគ្រឿងបន្លាស់ទូរស័ព្ទឈានមុខគេ។',
+                'about-p1': 'ក្រុមហ៊ុន Shenzhen XiqiSiqi Electronic Technology Co., Ltd. គឺជាអ្នកផ្គត់ផ្គង់ដុំឈានមុខគេនៃគ្រឿងបន្លាស់ទូរស័ព្ទដៃ និងឧបករណ៍ទំនាក់ទំនង។',
                 'about-h2': '🔷 រឿងរ៉ាវម៉ាកយីហោ',
-                'about-p2': 'ជាមួយនឹងការរីកចម្រើននៃបច្ចេកវិទ្យា គ្រឿងបន្លាស់បានក្លាយជាផ្នែកសំខាន់។',
-                'about-h3': '🔷 គោលការណ៍អាជីវកម្ម',
-                'about-c1-title': 'គុណភាពជាចម្បង:', 'about-c1-desc': 'ការត្រួតពិនិត្យយ៉ាងតឹងរឹងពីវត្ថុធាតុដើមដល់ការដឹកជញ្ជូន។',
-                'about-c2-title': 'ឈ្នះ-ឈ្នះ:', 'about-c2-desc': 'តម្លៃលក់ដុំប្រកួតប្រជែង និង MOQ បត់បែន។',
-                'about-c3-title': 'ការច្នៃប្រឌិត:', 'about-c3-desc': 'តាមទាន់ការចេញទូរស័ព្ទថ្មីៗជានិច្ច។',
-                'about-h4': '🔷 ប្រវត្តិ',
-                'about-h-2020': 'ឆ្នាំ ២០២០:', 'about-d-2020': 'បានបង្កើតឃ្លាំងស្តុកទំនិញ និងការផ្គត់ផ្គង់ក្រៅបណ្តាញ។',
-                'about-h-2022': 'ឆ្នាំ ២០២២:', 'about-d-2022': 'ពង្រីកភាពជាដៃគូរោងចក្រ និងក្រុមការងារ QA។',
-                'about-h-2023': 'ឆ្នាំ ២០២៣:', 'about-d-2023': 'ដាក់ឱ្យដំណើរការប្រព័ន្ធលក់ដុំ B2B ឌីជីថល។',
-                'about-h-2025': 'ឆ្នាំ ២០២៥:', 'about-d-2025': 'រួមបញ្ចូលការគ្រប់គ្រងឃ្លាំងស្វ័យប្រវត្ត WMS។',
-                'about-h-now': 'បច្ចុប្បន្ន:', 'about-d-now': 'បម្រើហាងជាង ២,០០០+ និងអ្នកលក់តាមអនឡាញ។',
+                'about-p2': 'ជាមួយនឹងការកើនឡើងនៃទូរស័ព្ទឆ្លាតវៃ គ្រឿងបន្លាស់បានក្លាយជាផ្នែកយ៉ាងសំខាន់។ XiqiSiqi ត្រូវ​បានបង្កើតឡើងដោយផ្តោតលើគុណភាពជាចម្បង។',
+                'about-h3': '🔷 ទស្សនវិជ្ជាអាជីវកម្ម',
+                'about-c1-title': 'គុណភាពជាចម្បង:', 'about-c1-desc': 'ការពិនិត្យយ៉ាងម៉ត់ចត់ចាប់ពីកម្រិតធាតុដើមរហូតដល់ការដឹកជញ្ជូន។',
+                'about-c2-title': 'ឈ្នះ-ឈ្នះ:', 'about-c2-desc': 'តម្លៃលក់ដុំប្រកួតប្រជែង និងលក្ខខណ្ឌដែលអាចបត់បែនបាន។',
+                'about-c3-title': 'ការច្នៃប្រឌិតរហ័ស:', 'about-c3-desc': 'ដើរទាន់ការចេញផ្សាយទូរស័ព្ទម៉ាកល្បីៗ។',
+                'about-h4': '🔷 ប្រវត្តិសង្ខេប',
+                'about-h-2020': '២០២០:', 'about-d-2020': 'បង្កើតក្រុមហ៊ុន និងឃ្លាំងស្តុកទំនិញដំបូង។',
+                'about-h-2022': '២០២២:', 'about-d-2022': 'ពង្រីកកិច្ចសហប្រតិបត្តិការរោងចក្រ និងក្រុម QA Inspection។',
+                'about-h-2023': '២០២៣:', 'about-d-2023': 'បើកដំណើរការប្រព័ន្ធលក់ដុំ B2B តាមអ៊ីនធឺណិត។',
+                'about-h-2025': '២០២៥:', 'about-d-2025': 'បញ្ចូលប្រព័ន្ធ WMS សម្រាប់ការដឹកជញ្ជូនរហ័ស។',
+                'about-h-now': 'បច្ចុប្បន្ន:', 'about-d-now': 'បម្រើហាងជាង ២.០០០+ នៅទូទាំងពិភពលោក។',
                 'about-h5': '🔷 ការធានាគុណភាព',
-                'about-p5-intro': 'ផលិតផលទាំងអស់ឆ្លងកាត់ការត្រួតពិនិត្យគុណភាពយ៉ាងតឹងរឹង៖',
-                'about-q1-title': 'ការបញ្ជាក់សុវត្ថិភាព:', 'about-q1-desc': 'អនុលោមតាមស្តង់ដារសុវត្ថិភាពពេញលេញ។',
-                'about-q2-title': 'ម៉ូដជាក់ស្តែង:', 'about-q2-desc': 'ផលិតតាមទម្រង់ទូរស័ព្ទពិតប្រាកដ 1:1។',
-                'about-q3-title': 'ការធ្វើតេស្តតឹងរឹង:', 'about-q3-desc': 'ការធ្វើតេស្តធ្លាក់ និងកញ្ចក់ការពារកម្រិត 9H។',
+                'about-p5-intro': 'ផលិតផលទាំងអស់ឆ្លងកាត់ការត្រួតពិនិត្យយ៉ាងម៉ត់ចត់:',
+                'about-q1-title': 'ស្តង់ដារសុវត្ថិភាព:', 'about-q1-desc': 'មានសៀគ្វីការពារការសាកហួស និងឆ្លងចរន្ត។',
+                'about-q2-title': 'ពុម្ពជាក់លាក់:', 'about-q2-desc': 'ការផលិតតាមទំហំទូរស័ព្ទពិតប្រាកដ ១:១។',
+                'about-q3-title': 'ការតេស្តយ៉ាងម៉ត់ចត់:', 'about-q3-desc': 'តេស្តភាពធន់នឹងការធ្លាក់ និងកញ្ចក់ស្កុត 9H។',
                 'about-h6': '🔷 សេវាកម្មក្រោយពេលលក់',
-                'about-p6-intro': 'ការធានា B2B យ៉ាងទូលំទូលាយ៖',
-                'about-s1-title': 'ប្តូរយកវិញពេលខូច:', 'about-s1-desc': 'ប្តូរជូនវិញក្នុងរយៈពេល 7 ថ្ងៃសម្រាប់ទំនិញខូចគុណភាព។',
+                'about-p6-intro': 'ការធានា B2B ដ៏គួរឱ្យទុកចិត្ត:',
+                'about-s1-title': 'ការផ្លាស់ប្តូរផលិតផលខូច:', 'about-s1-desc': 'ដូរប្រែវិញដោយឥតលក្ខខណ្ឌក្នុងរយៈពេល ៧ ថ្ងៃចំពោះកំហុសបច្ចេកទេស។',
                 'auth-tab-login': 'ចូលគណនី', 'auth-tab-reg': 'ចុះឈ្មោះ',
                 'auth-email-label': 'អ៊ីមែល / គណនី',
                 'auth-pass-label': 'ពាក្យសម្ងាត់',
@@ -457,419 +420,377 @@
                 'cart-name-label': 'ឈ្មោះអ្នកទទួល',
                 'cart-phone-label': 'លេខទូរស័ព្ទ',
                 'cart-address-label': 'អាសយដ្ឋានដឹកជញ្ជូន',
-                'footer-info': 'Bantian, Longgang District, Shenzhen, China | Email: XiqiSiqi@gmail.com | Hotline: +85566267927',
-                'btn-details': 'ព័ត៌មានលម្អិត', 'btn-addcart': 'បន្ថែមចូលកន្ត្រក',
-                'admin-modal-title': '👑 អ្នកគ្រប់គ្រង៖ ប្តូររូបភាពផលិតផល',
-                'admin-modal-label': 'បញ្ចូលតំណភ្ជាប់រូបភាពថ្មី:',
-                'admin-modal-confirm': 'បញ្ជាក់',
-                'admin-modal-cancel': 'បោះបង់'
+                'footer-info': ' Bantian, Longgang District, Shenzhen, China | អ៊ីមែល: XiqiSiqi@gmail.com | ខ្សែទូរស័ព្ទ: +85566267927',
+                'btn-details': 'ព័ត៌មានលម្អិត', 'btn-addcart': 'បន្ថែមទៅកន្ត្រក',
             }
         };
 
+        // 36 unique 3C electronic products with category-matched, non-duplicated images
+        const productCatalog = [
+            { category: 'charger', name: 'Fast Charger GaN Pro 20W Type-C (Model XS-101)', price: 8.50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLk7mP0aicixzOnZqdC5T9RRooO7Zb9tHuf54XD8jXg&s' },
+            { category: 'car', name: 'Magnetic Car Phone Holder Mount 16W Wireless (Model XS-102)', price: 9.75, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlurUGBWoy67JkxOVdJp6t7znhrNpjt9DjurNNhEdGZQ&s=10' },
+            { category: 'case', name: 'Shockproof Armor Clear Magnetic Case Series (Model XS-103)', price: 11.00, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSa37j50mfFA7jorLtlG7RikMqS5Qr_r_ELJFszKUF3w&s' },
+            { category: 'audio', name: 'TWS Wireless Earbuds Noise Cancelling (Model XS-104)', price: 12.25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp0Wgmo1xPLHybk-I7keR8KUG53elYV5g_y4FMY8nCEQ&s=10' },
+            { category: 'charger', name: 'Fast Charger GaN Pro 40W Type-C (Model XS-105)', price: 13.50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpWIzWoNRblY0PQmP3F7uEqgDw_-qo4h-3bz0N68hVIQ&s' },
+            { category: 'car', name: 'Magnetic Car Phone Holder Mount 20W Wireless (Model XS-106)', price: 14.75, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Jteii8Nmm1k1fricaLAZ1qK7aATtcof7rXaBB-Adrg&s=10' },
+            { category: 'case', name: 'Shockproof Armor Clear Magnetic Case Series (Model XS-107)', price: 16.00, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUDIIyzV6uGVjBZE8-_qtmbA820CvcuRZzu42EPakOsg&s=10' },
+            { category: 'audio', name: 'TWS Wireless Earbuds Noise Cancelling (Model XS-108)', price: 17.25, image: 'https://p16-oec-general-useast5.ttcdn-us.com/tos-useast5-i-omjb5zjo8w-tx/33c4508a8e174ed6ab43e516f61e869c~tplv-fhlh96nyum-crop-webp:1200:1200.webp?dr=12190&t=555f072d&ps=933b5bde&shp=8dbd94bf&shcp=e1be8f53&idc=useast5&from=2378011839' },
+            { category: 'charger', name: 'Fast Charger GaN Pro 60W Type-C (Model XS-109)', price: 18.50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFf0pvuQtOl_op0Gi9dSxKQATWj5BnP6JvB_0j8pYEhA&s=10' },
+            { category: 'car', name: 'Magnetic Car Phone Holder Mount 24W Wireless (Model XS-110)', price: 19.75, image: 'http://lisen.com/cdn/shop/files/71nf1OZN-VL._AC_SL1500.jpg?v=1757581244&width=1024' },
+            { category: 'case', name: 'Shockproof Armor Clear Magnetic Case Series (Model XS-111)', price: 21.00, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlrDr3hX951LrTb33WReDCjl7aXrHd73E3ZgtjxuTd6g&s' },
+            { category: 'audio', name: 'TWS Wireless Earbuds Noise Cancelling (Model XS-112)', price: 22.25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTkl30Tcmp-Wq1fFsOUV_jT4xNdc8sHQh8SnHLx67Zyw&s=10' },
+            { category: 'charger', name: 'Fast Charger GaN Pro 80W Type-C (Model XS-113)', price: 23.50, image: 'https://www.momax.net/cdn/shop/files/ff0f005a94d702c4cf9f4c6bbbdaccb1.png?v=1733743063&width=1200' },
+            { category: 'car', name: 'Magnetic Car Phone Holder Mount 28W Wireless (Model XS-114)', price: 24.75, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSXMKAGaK5v4-eqhH7hRf0G5h5UYao42-aJao8p4g52Q&s' },
+            { category: 'case', name: 'Shockproof Armor Clear Magnetic Case Series (Model XS-115)', price: 26.00, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUR1w9Sx7emlLwBSuJGPUyz8VY9QX6RarwHQIQZdDwrg&s' },
+            { category: 'audio', name: 'TWS Wireless Earbuds Noise Cancelling (Model XS-116)', price: 27.25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRALaT2LReBfbT5qTY6KfjTcE68nHYAVIxwCTelhvue_g&s=10' },
+            { category: 'charger', name: 'Fast Charger GaN Pro 100W Type-C (Model XS-117)', price: 28.50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmBSrVupLsMVceHc5pVcdCqWmwmZmABFbyz7z2gtxnaQ&s' },
+            { category: 'car', name: 'Magnetic Car Phone Holder Mount 32W Wireless (Model XS-118)', price: 29.75, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO8QUZtX9EpaN4RaGk8sx4XDiEwGSnFm0yIM-b4XyY_g&s=10' },
+            { category: 'case', name: 'Shockproof Armor Clear Magnetic Case Series (Model XS-119)', price: 31.00, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQt3K3v_PHagof96AiYpVByuKIGqn1qq-cxAmwf6V27Q&s=10' },
+            { category: 'audio', name: 'TWS Wireless Earbuds Noise Cancelling (Model XS-120)', price: 32.25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ50Pys3JIjJm67onaaPfu4r7UukpLRIFo1kCezLEJE6Q&s' },
+            { category: 'charger', name: 'Fast Charger GaN Pro 120W Type-C (Model XS-121)', price: 33.50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE0Z7_ffZgBjtIcBnB7iPYqkEOe4Kb20VkDoYBBfW8cQ&s=10' },
+            { category: 'car', name: 'Magnetic Car Phone Holder Mount 36W Wireless (Model XS-122)', price: 34.75, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyj021M5Rip3DdqCjeqLutay0MtuHrRuye_YX--cHWOA&s' },
+            { category: 'case', name: 'Shockproof Armor Clear Magnetic Case Series (Model XS-123)', price: 36.00, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYHRzjP0g6qTUuAT9oNRasmmgd5HT6WbZphbsm9MefOQ&s=10' },
+            { category: 'audio', name: 'TWS Wireless Earbuds Noise Cancelling (Model XS-124)', price: 37.25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSawhjcpRcJeWlsPsyjN4bh6cvXR4P6g6DrIvhU9PzXpQ&s=10' },
+            { category: 'charger', name: 'Fast Charger GaN Pro 140W Type-C (Model XS-125)', price: 38.50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkS_UMH5px35tx-mLolrfThcYVXQ1d1YIzf-Ca3H8uQw&s=10' },
+            { category: 'car', name: 'Magnetic Car Phone Holder Mount 40W Wireless (Model XS-126)', price: 39.75, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0CNGBoc_67L8ptXRcvakp-a6COYUxo0lMkThFY77vTg&s' },
+            { category: 'case', name: 'Shockproof Armor Clear Magnetic Case Series (Model XS-127)', price: 41.00, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc4hgFYxdIsXNxWoC5IzYrct_jrEUeumWAbQxqFjNmig&s' },
+            { category: 'audio', name: 'TWS Wireless Earbuds Noise Cancelling (Model XS-128)', price: 42.25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdNiiCQjKGw6GaR57ObkXkfp_dBPoOCuxOj3nhFj9w7Q&s=10' },
+            { category: 'charger', name: 'Fast Charger GaN Pro 160W Type-C (Model XS-129)', price: 43.50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSELGJ_vMc7YdvczG1_n9G8Cc-E3bcyPPwEucZVmy-_tA&s=10' },
+            { category: 'car', name: 'Magnetic Car Phone Holder Mount 44W Wireless (Model XS-130)', price: 44.75, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1TlRvc0aibLGj4X7_d5N71_4JaEa9JDrK-ZBL2ktS9Q&s=10' },
+            { category: 'case', name: 'Shockproof Armor Clear Magnetic Case Series (Model XS-131)', price: 46.00, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQt3K3v_PHagof96AiYpVByuKIGqn1qq-cxAmwf6V27Q&s=10' },
+            { category: 'audio', name: 'TWS Wireless Earbuds Noise Cancelling (Model XS-132)', price: 47.25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf5WvI7v-LMAMA2qK6cXuZkroiPxTKPKw1ggRt2G4sCw&s' },
+            { category: 'charger', name: 'Fast Charger GaN Pro 180W Type-C (Model XS-133)', price: 48.50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Yp8UeBy2zr7xHV6XCfMD8lYb9thQ4eDbCCWf-_IIOQ&s=10' },
+            { category: 'car', name: 'Magnetic Car Phone Holder Mount 48W Wireless (Model XS-134)', price: 49.75, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdWRx7NGLjqpAn-i4OB6noIqlaxTBgnuvD8ewV1fbbA&s=10' },
+            { category: 'case', name: 'Shockproof Armor Clear Magnetic Case Series (Model XS-135)', price: 51.00, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9fNNQ00nJmNZ6vtkaMl7_cE3rA7TSNPyO-FQsJB0uXQ&s=10' },
+            { category: 'audio', name: 'TWS Wireless Earbuds Noise Cancelling (Model XS-136)', price: 52.25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkkIDsTTSEE-krzwmQbWrHOdPl90AFqzW3vBObyNenWQ&s' }
+        ];
+
+        const products = productCatalog.map((item, i) => ({
+            id: i + 1,
+            category: item.category,
+            name: item.name,
+            price: item.price,
+            image: item.image,
+            desc: `High-quality industrial B2B grade ${item.name}. Full support for OEM customization, custom packaging, logo printing, and wholesale bulk discounts.`,
+            featured: i < 3
+        }));
+
         let currentLang = 'en';
+        let cart = [];
+        let currentCategory = 'all';
+        let currentUser = null;
+
+        let feedbacks = [
+            { name: 'John Miller (USA)', rating: 5, msg: 'Outstanding wholesale quality and fast shipping. The GaN chargers have become top sellers in our stores.' },
+            { name: 'Sokha Heng (Cambodia)', rating: 5, msg: 'A reliable B2B supplier. Product specifications were accurate and the OEM packaging looked professional.' },
+            { name: 'Tech Line Supplies (Singapore)', rating: 4, msg: 'The car accessories line is well made and consistently packaged. We plan to place a larger repeat order.' },
+            { name: 'Daniel Wong (Malaysia)', rating: 5, msg: 'The chargers passed our retail inspection and performed well during daily use tests.' },
+            { name: 'Mina Electronics (Thailand)', rating: 5, msg: 'Communication was clear, production was on schedule, and the products arrived in good condition.' },
+            { name: 'K-Tech Distribution (Vietnam)', rating: 4, msg: 'Good wholesale pricing and stable product quality across the full shipment.' },
+            { name: 'Sophia Retail Group (UK)', rating: 5, msg: 'The magnetic phone holders have strong magnets and a clean retail-ready finish.' },
+            { name: 'Lucas Mobile Store (France)', rating: 5, msg: 'The clear magnetic cases fit accurately and received positive feedback from our customers.' },
+            { name: 'Seoul Digital Market (South Korea)', rating: 4, msg: 'The earbuds have a modern design, acceptable battery life, and good packaging quality.' },
+            { name: 'Tokyo Smart Accessories (Japan)', rating: 5, msg: 'Product details matched the samples, and each carton was labeled clearly for warehouse receiving.' },
+            { name: 'Ahmed Tech Trading (UAE)', rating: 5, msg: 'Responsive service and dependable order handling. The 100W chargers are selling particularly well.' },
+            { name: 'Berlin Gadget Haus (Germany)', rating: 4, msg: 'Solid build quality and consistent specifications. Delivery documentation was complete.' },
+            { name: 'Nordic Mobile AB (Sweden)', rating: 5, msg: 'The products look premium for the price point and work well in our retail channel.' },
+            { name: 'Marco Bianchi (Italy)', rating: 5, msg: 'The wireless car mounts are practical, well finished, and easy for customers to install.' },
+            { name: 'Iberia Phone Supply (Spain)', rating: 4, msg: 'We received the order without shortages. Product colors and models matched the packing list.' },
+            { name: 'Maple Tech Wholesale (Canada)', rating: 5, msg: 'The supplier handled our mixed-model order accurately and provided prompt updates.' },
+            { name: 'Sydney Mobile Hub (Australia)', rating: 5, msg: 'Good quality control on the chargers and earbuds. Returns have remained very low.' },
+            { name: 'Auckland Device Supply (New Zealand)', rating: 4, msg: 'Reliable products with clear model labeling and convenient wholesale quantities.' },
+            { name: 'Jakarta Gadget Center (Indonesia)', rating: 5, msg: 'The cases and chargers are popular with our customers and have competitive margins.' },
+            { name: 'Manila Tech Depot (Philippines)', rating: 5, msg: 'Fast response times and smooth coordination from order confirmation to shipment.' },
+            { name: 'Vientiane Mobile Trade (Laos)', rating: 4, msg: 'The shipment was packed securely and the product quality was consistent.' },
+            { name: 'Yangon Electronics Mart (Myanmar)', rating: 5, msg: 'The charging products are stable and the packaging is suitable for retail display.' },
+            { name: 'Phnom Penh Digital Shop (Cambodia)', rating: 5, msg: 'We have reordered several times because the product quality and service remain dependable.' },
+            { name: 'Hanoi Smart Store (Vietnam)', rating: 4, msg: 'The magnetic cases fit well and the product photos closely match the actual items.' },
+            { name: 'Bangkok Accessory House (Thailand)', rating: 5, msg: 'The 140W chargers delivered strong performance during our testing and customer feedback has been positive.' },
+            { name: 'Kuala Lumpur Mobile Pro (Malaysia)', rating: 5, msg: 'OEM logo printing was sharp and the cartons arrived properly organized.' },
+            { name: 'Singapore Gadget Link (Singapore)', rating: 4, msg: 'A professional supplier with accurate invoices, stable lead times, and good after-sales communication.' },
+            { name: 'New York Device Market (USA)', rating: 5, msg: 'The earbuds and fast chargers are well suited to our mid-range retail segment.' },
+            { name: 'California Mobile Wholesale (USA)', rating: 4, msg: 'The products offer a good balance of price, presentation, and everyday performance.' },
+            { name: 'Toronto Accessory Network (Canada)', rating: 5, msg: 'Order quantities, models, and colors were all correct. We will continue purchasing.' },
+            { name: 'Dubai Smart Trade (UAE)', rating: 5, msg: 'The high-wattage chargers feel durable and meet the expectations of our business customers.' },
+            { name: 'Doha Electronics Supply (Qatar)', rating: 4, msg: 'Good carton protection and clear communication throughout the transaction.' },
+            { name: 'Riyadh Mobile Center (Saudi Arabia)', rating: 5, msg: 'Product quality was consistent across the batch, especially the car mounts and chargers.' },
+            { name: 'Mumbai Tech Bazaar (India)', rating: 5, msg: 'Competitive wholesale terms and dependable product availability for repeat orders.' },
+            { name: 'Delhi Mobile Partners (India)', rating: 4, msg: 'The cases are well molded and the wireless earbuds have attractive retail packaging.' },
+            { name: 'Cape Town Digital Supply (South Africa)', rating: 5, msg: 'The supplier provided helpful support and resolved a small packaging issue quickly.' },
+            { name: 'Amsterdam Gadget Trade (Netherlands)', rating: 5, msg: 'A smooth B2B buying experience with good documentation and reliable quality control.' },
+            { name: 'Brussels Mobile Distribution (Belgium)', rating: 4, msg: 'The shipment arrived as scheduled and the products were ready for immediate resale.' },
+            { name: 'Warsaw Electronics Hub (Poland)', rating: 5, msg: 'The range is broad, pricing is workable, and product consistency has been strong.' },
+            { name: 'Prague Smart Devices (Czech Republic)', rating: 5, msg: 'We were satisfied with the samples and the bulk order maintained the same quality standard.' }
+        ];
+
+        // Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            renderFeatured();
+            renderFeedbacks();
+            updateLanguageStrings();
+        });
 
         function changeLanguage(lang) {
             currentLang = lang;
-            updateTexts();
-            renderProducts();
-            renderFeatured();
-            renderFeedbackList();
+            updateLanguageStrings();
         }
 
-        function updateTexts() {
+        function updateLanguageStrings() {
+            const t = translations[currentLang];
             const count = products.length;
+
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[currentLang] && translations[currentLang][key]) {
-                    let text = translations[currentLang][key];
-                    text = text.replace(/{count}/g, count);
-                    el.innerText = text;
+                if (t[key]) {
+                    let text = t[key].replace('{count}', count);
+                    el.textContent = text;
                 }
             });
-            updateCategoryButtonTexts();
+
+            // Specific UI text adjustments
+            const catCounts = {
+                all: products.length,
+                charger: products.filter(p => p.category === 'charger').length,
+                car: products.filter(p => p.category === 'car').length,
+                case: products.filter(p => p.category === 'case').length,
+                audio: products.filter(p => p.category === 'audio').length,
+            };
+
+            document.getElementById('navProductsText').textContent = `${t['nav-products'].replace('{count}', count)}`;
+            document.getElementById('catBtnAll').textContent = `${t['cat-all'].replace('{count}', catCounts.all)}`;
+            document.getElementById('catBtnCharger').textContent = `${t['cat-charger'].replace('{count}', catCounts.charger)}`;
+            document.getElementById('catBtnCar').textContent = `${t['cat-car'].replace('{count}', catCounts.car)}`;
+            document.getElementById('catBtnCase').textContent = `${t['cat-case'].replace('{count}', catCounts.case)}`;
+            document.getElementById('catBtnAudio').textContent = `${t['cat-audio'].replace('{count}', catCounts.audio)}`;
+            
+            renderProducts();
+            renderFeatured();
         }
-
-        function updateCategoryButtonTexts() {
-            const count = products.length;
-            const perCat = Math.floor(count / 4);
-            const remainder = count % 4;
-
-            const btnAll = document.getElementById('catBtnAll');
-            const btnCharger = document.getElementById('catBtnCharger');
-            const btnCar = document.getElementById('catBtnCar');
-            const btnCase = document.getElementById('catBtnCase');
-            const btnAudio = document.getElementById('catBtnAudio');
-
-            if (btnAll) btnAll.innerText = translations[currentLang]['cat-all'].replace('{count}', count);
-            if (btnCharger) btnCharger.innerText = translations[currentLang]['cat-charger'].replace('{count}', perCat + (remainder > 0 ? 1 : 0));
-            if (btnCar) btnCar.innerText = translations[currentLang]['cat-car'].replace('{count}', perCat + (remainder > 1 ? 1 : 0));
-            if (btnCase) btnCase.innerText = translations[currentLang]['cat-case'].replace('{count}', perCat + (remainder > 2 ? 1 : 0));
-            if (btnAudio) btnAudio.innerText = translations[currentLang]['cat-audio'].replace('{count}', perCat);
-        }
-
-        // 36 項產品資料
-        const categories = ['charger', 'car', 'case', 'audio'];
-        const baseNames = {
-            'charger': ['GaN Fast Charger 65W', 'PD Dual Port Charger', 'MagSafe Wireless Pad', 'Desktop Multi-Charger', 'Ultra Slim Power Bank 10000mAh', 'Solar Emergency Charger', 'Travel Adapter Universal', 'Quick Charge Car Inverter', 'Smart GaN Charger 100W'],
-            'car': ['Magnetic Phone Mount', 'Gravity Air Vent Holder', 'Wireless Charging Car Mount', 'Dashboard Holder Pro', 'CD Slot Phone Mount', 'Rearview Mirror Bracket', 'Cup Holder Phone Mount', 'Steering Wheel Holder', 'Auto-Clamping Mount'],
-            'case': ['Liquid Silicone Case', 'Crystal Clear Armor', 'Rugged Shockproof Case', 'MagSafe Matte Shield', 'Leather Wallet Case', 'Carbon Fiber Ultra Thin', 'Armor Ring Kickstand', 'Camera Lens Protector Case', 'Heavy Duty Defender Pro'],
-            'audio': ['TWS Bluetooth Earbuds', 'Active Noise Canceling Headset', 'Type-C Hi-Fi Earphones', 'Aux Stereo Audio Cable', 'Braided Type-C Fast Cable', '3-in-1 Retractable Cable', 'Metal Bass Portable Speaker', 'Lightning to 3.5mm Adapter', 'Spatial Audio Wireless Pods']
-        };
-
-        const defaultImages = [
-            'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400&auto=format&fit=crop&q=60',
-            'https://images.unsplash.com/photo-1619946794135-7bc917a27793?w=400&auto=format&fit=crop&q=60',
-            'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&auto=format&fit=crop&q=60',
-            'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&auto=format&fit=crop&q=60'
-        ];
-
-        const productDescriptions = {
-            'charger': 'Engineered with advanced semiconductor technology, this high-efficiency charger delivers rapid power delivery while maintaining optimal temperature control with multiple built-in safety protections.',
-            'car': 'Designed for maximum stability and convenience on the road. Features one-hand operation, 360-degree rotation, and firm gripping mechanisms that withstand rough road conditions.',
-            'case': 'Crafted with premium materials to provide ultimate drop defense without adding bulk. Features precise cutouts, tactile responsive buttons, and anti-fingerprint surface coatings.',
-            'audio': 'Delivers immersive high-fidelity sound clarity with deep bass response. Ergonomically optimized for long-lasting comfort and seamless wireless or wired connectivity.'
-        };
-
-        let products = [];
-
-        function initProducts() {
-            products = [];
-            let idCounter = 1;
-            categories.forEach((cat, catIdx) => {
-                for (let i = 0; i < 9; i++) {
-                    const nameList = baseNames[cat];
-                    const name = nameList[i % nameList.length] + ' #' + (i + 1);
-                    products.push({
-                        id: idCounter++,
-                        category: cat,
-                        name: name,
-                        price: +(Math.random() * 25 + 5).toFixed(2),
-                        moq: (Math.floor(Math.random() * 5) + 1) * 10,
-                        image: defaultImages[catIdx % defaultImages.length],
-                        description: productDescriptions[cat]
-                    });
-                }
-            });
-        }
-
-        let cart = [];
-        let currentUser = null;
-        let registeredUsers = [
-            { email: 'admin@xiqi.com', pass: 'admin123', name: 'Admin Boss', isAdmin: true }
-        ];
-        let isAdminEditMode = false;
-        let currentEditProductId = null;
-
-        // 26 位客戶反饋資料
-        let feedbackList = [
-            { name: 'Global Tech Store (USA)', rating: 5, msg: 'Excellent wholesale quality! Fast shipping and great customer support from XiqiSiqi.', date: '2026-06-15' },
-            { name: 'Mobile Hub (Cambodia)', rating: 5, msg: 'Very reliable supplier for fast chargers and phone cases. Our customers love them!', date: '2026-07-02' },
-            { name: 'Apex Electronics (Germany)', rating: 5, msg: 'Top-notch OEM quality. The packaging and build quality exceed expectations.', date: '2026-07-05' },
-            { name: 'ElectroDirect (Japan)', rating: 4, msg: 'Stable supply chain and great communication. Will place repeat orders soon.', date: '2026-07-08' },
-            { name: 'Phnom Penh Gadgets (Cambodia)', rating: 5, msg: 'Best pricing for mobile accessories in wholesale market. Highly recommended!', date: '2026-07-10' },
-            { name: 'Silicon Valley Gear (USA)', rating: 5, msg: 'Fast delivery and flawless product condition upon arrival.', date: '2026-07-12' },
-            { name: 'Nordic Mobile (Sweden)', rating: 4, msg: 'Great variety of protective cases and chargers. Very professional.', date: '2026-07-14' },
-            { name: 'Tokyo Accessories Ltd (Japan)', rating: 5, msg: 'Exceptional precision molding for iPhone cases. Perfect fit!', date: '2026-07-15' },
-            { name: 'Bangkok Tech Solutions (Thailand)', rating: 5, msg: 'Reliable B2B partner with wonderful customer service.', date: '2026-07-18' },
-            { name: 'Saigon Mobile Store (Vietnam)', rating: 5, msg: 'Top quality GaN chargers. Our retail customers are very satisfied.', date: '2026-07-20' },
-            { name: 'Sydney Electronics (Australia)', rating: 4, msg: 'Good packaging, fast shipping times, competitive MOQ.', date: '2026-07-22' },
-            { name: 'London Phone World (UK)', rating: 5, msg: 'Outstanding audio quality on their TWS earbuds and cables.', date: '2026-07-24' },
-            { name: 'Toronto Mobile Parts (Canada)', rating: 5, msg: 'Very smooth ordering process through their online platform.', date: '2026-07-25' },
-            { name: 'Seoul Gadget Shop (South Korea)', rating: 4, msg: 'Great car mounts and wireless chargers. Sturdy and durable.', date: '2026-07-26' },
-            { name: 'Dubai Mobile Express (UAE)', rating: 5, msg: 'Top quality wholesale provider. Excellent communication.', date: '2026-07-27' },
-            { name: 'Madrid Accessories (Spain)', rating: 5, msg: 'Very impressed with their custom OEM services and packaging.', date: '2026-07-28' },
-            { name: 'Rome Electronics (Italy)', rating: 4, msg: 'Good variety of products and reasonable wholesale prices.', date: '2026-07-29' },
-            { name: 'Amsterdam Mobile Care (Netherlands)', rating: 5, msg: 'Fast delivery across Europe. High grade tempered glass and cases.', date: '2026-07-30' },
-            { name: 'Vienna Tech Hub (Austria)', rating: 5, msg: 'Very professional B2B supplier. Premium product lineup.', date: '2026-07-31' },
-            { name: 'Zurich Mobile Store (Switzerland)', rating: 5, msg: 'Immaculate build quality. No defective items in our bulk order.', date: '2026-08-01' },
-            { name: 'Singapore Device Supply (Singapore)', rating: 5, msg: 'Super fast shipping and responsive sales reps. 10/10.', date: '2026-08-01' },
-            { name: 'Kuala Lumpur Tech (Malaysia)', rating: 4, msg: 'Great selection of fast chargers and cables.', date: '2026-08-01' },
-            { name: 'Manila Mobile Accessories (Philippines)', rating: 5, msg: 'Reliable supplier with wonderful wholesale margins.', date: '2026-08-01' },
-            { name: 'Jakarta Phone Hub (Indonesia)', rating: 5, msg: 'High product demand from our local retail buyers. Excellent!', date: '2026-08-01' },
-            { name: 'Cairo Tech Wholesale (Egypt)', rating: 4, msg: 'Very trustworthy partner for bulk electronics sourcing.', date: '2026-08-01' },
-            { name: 'Sao Paulo Mobile Gear (Brazil)', rating: 5, msg: 'Amazing service and durable accessories. Highly recommended!', date: '2026-08-01' }
-        ];
 
         function showSection(sectionId) {
-            ['home', 'products', 'feedback', 'about'].forEach(sec => {
-                const el = document.getElementById('view-' + sec);
-                if (el) el.classList.add('hidden');
+            ['home', 'products', 'feedback', 'about'].forEach(id => {
+                const sec = document.getElementById(`view-${id}`);
+                if (sec) {
+                    if (id === sectionId) sec.classList.remove('hidden');
+                    else sec.classList.add('hidden');
+                }
             });
-            const target = document.getElementById('view-' + sectionId);
-            if (target) {
-                target.classList.remove('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function scrollToFooter() {
             document.getElementById('mainFooter').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function renderFeatured() {
-            const grid = document.getElementById('featuredGrid');
-            if (!grid) return;
-            const featured = products.slice(0, 3);
-            grid.innerHTML = featured.map(p => productCardHtml(p)).join('');
-        }
-
-        let activeCategory = 'all';
         function switchCategory(cat) {
-            activeCategory = cat;
+            currentCategory = cat;
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 if (btn.getAttribute('data-cat') === cat) {
-                    btn.className = "cat-btn bg-blue-600 text-white text-xs px-3 py-1.5 rounded-lg transition";
+                    btn.className = "cat-btn bg-blue-600 text-white text-xs px-3 py-1.5 rounded-lg transition font-medium";
                 } else {
-                    btn.className = "cat-btn bg-gray-200 text-gray-700 hover:bg-gray-300 text-xs px-3 py-1.5 rounded-lg transition";
+                    btn.className = "cat-btn bg-gray-200 text-gray-700 hover:bg-gray-300 text-xs px-3 py-1.5 rounded-lg transition font-medium";
                 }
             });
             renderProducts();
         }
 
+        function createProductCardHTML(p) {
+            const t = translations[currentLang];
+            return `
+                <div class="bg-white rounded-2xl border shadow-sm hover:shadow-md transition flex flex-col overflow-hidden group relative">
+                    <div class="h-48 overflow-hidden bg-gray-100 relative">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <span class="absolute bottom-2 left-2 bg-slate-900/80 text-white text-[10px] px-2 py-0.5 rounded uppercase">${p.category}</span>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm line-clamp-2 leading-snug">${p.name}</h4>
+                            <p class="text-xs text-gray-500 mt-1 line-clamp-2">${p.desc}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                            <div>
+                                <span class="text-[10px] text-gray-400 block">Wholesale Price</span>
+                                <span class="text-blue-600 font-black text-base">$${p.price.toFixed(2)} USD</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="openDetailModal(${p.id})" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs px-2.5 py-1.5 rounded-lg transition font-medium">${t['btn-details']}</button>
+                                <button onclick="addToCart(${p.id})" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-3 py-1.5 rounded-lg transition font-medium shadow-sm flex items-center gap-1">
+                                    <i class="fa-solid fa-cart-plus"></i> ${t['btn-addcart']}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         function renderProducts() {
             const grid = document.getElementById('productGrid');
-            if (!grid) return;
-            const filtered = activeCategory === 'all' ? products : products.filter(p => p.category === activeCategory);
-            grid.innerHTML = filtered.map(p => productCardHtml(p)).join('');
+            const filtered = currentCategory === 'all' 
+                ? products 
+                : products.filter(p => p.category === currentCategory);
+            
+            grid.innerHTML = filtered.map(p => createProductCardHTML(p)).join('');
         }
 
-        // 擴充的手機型號選項
-        const phoneModelOptionsHTML = `
-            <option value="iPhone 17 Pro Max">iPhone 17 Pro Max</option>
-            <option value="iPhone 17 Pro">iPhone 17 Pro</option>
-            <option value="iPhone 17">iPhone 17</option>
-            <option value="iPhone 16 Pro Max">iPhone 16 Pro Max</option>
-            <option value="iPhone 16 Pro">iPhone 16 Pro</option>
-            <option value="iPhone 16 Plus">iPhone 16 Plus</option>
-            <option value="iPhone 16">iPhone 16</option>
-            <option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option>
-            <option value="iPhone 15 Pro">iPhone 15 Pro</option>
-            <option value="iPhone 15">iPhone 15</option>
-            <option value="Samsung Galaxy S25 Ultra">Samsung Galaxy S25 Ultra</option>
-            <option value="Samsung Galaxy S25+">Samsung Galaxy S25+</option>
-            <option value="Samsung Galaxy S25">Samsung Galaxy S25</option>
-            <option value="Samsung Galaxy S24 Ultra">Samsung Galaxy S24 Ultra</option>
-            <option value="Samsung Galaxy Z Fold 6 / Flip 6">Samsung Galaxy Z Fold 6 / Flip 6</option>
-            <option value="Universal / Standard Type">Universal / Standard Type</option>
-        `;
-
-        function productCardHtml(p) {
-            const editBadge = (currentUser && currentUser.isAdmin && isAdminEditMode) ? 
-                `<button onclick="openImageEditModal(${p.id})" class="absolute top-2 right-2 bg-amber-600 hover:bg-amber-500 text-white text-[10px] px-2 py-1 rounded shadow font-bold flex items-center gap-1 z-10"><i class="fa-solid fa-camera"></i> Edit Img</button>` : '';
-
-            const modelLabel = currentLang === 'km' ? 'ម៉ូដែលទូរស័ព្ទ:' : 'Phone Model:';
-            const qtyLabel = currentLang === 'km' ? 'ចំនួន:' : 'Quantity:';
-            const addCartText = translations[currentLang]['btn-addcart'] || 'Add to Cart';
-
-            return `
-                <div class="bg-white rounded-2xl border shadow-sm overflow-hidden flex flex-col justify-between relative group">
-                    ${editBadge}
-                    <div class="cursor-pointer overflow-hidden h-48 bg-gray-100 relative" onclick="openDetailModal(${p.id})">
-                        <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="p-4 space-y-3 flex-grow flex flex-col justify-between">
-                        <div class="space-y-1.5">
-                            <span class="text-[10px] uppercase font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">${p.category}</span>
-                            <h4 class="font-bold text-gray-900 text-sm line-clamp-1">${p.name}</h4>
-                            <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">${p.description}</p>
-                            <div class="flex items-center justify-between pt-1">
-                                <span class="text-blue-600 font-extrabold text-base">$${p.price.toFixed(2)} <span class="text-[10px] font-normal text-gray-400">USD</span></span>
-                                <span class="text-[11px] text-gray-500 font-medium">MOQ: ${p.moq} pcs</span>
-                            </div>
-                        </div>
-
-                        <!-- 支援型號選擇與自訂數量輸入 -->
-                        <div class="space-y-2 pt-2 border-t bg-gray-50 p-2.5 rounded-xl">
-                            <div>
-                                <label class="block text-[10px] font-bold text-gray-700 mb-0.5">${modelLabel}</label>
-                                <select id="modelSelect-${p.id}" class="w-full border rounded-lg px-2 py-1 text-xs outline-none focus:border-blue-600 bg-white">
-                                    ${phoneModelOptionsHTML}
-                                </select>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="flex-grow">
-                                    <label class="block text-[10px] font-bold text-gray-700 mb-0.5">${qtyLabel} (Min: ${p.moq})</label>
-                                    <input type="number" id="qtyInput-${p.id}" value="${p.moq}" min="${p.moq}" step="1" class="w-full border rounded-lg px-2 py-1 text-xs outline-none focus:border-blue-600 bg-white font-bold text-center">
-                                </div>
-                                <div class="flex items-end h-full pt-4">
-                                    <button onclick="addToCartDirect(${p.id})" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-3 py-1.5 rounded-lg transition text-xs shadow flex items-center gap-1">
-                                        <i class="fa-solid fa-cart-plus"></i> <span data-i18n="btn-addcart">Add to Cart</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+        function renderFeatured() {
+            const grid = document.getElementById('featuredGrid');
+            const featuredList = products.filter(p => p.featured);
+            grid.innerHTML = featuredList.map(p => createProductCardHTML(p)).join('');
         }
 
-        function addToCartDirect(productId) {
-            // 檢查是否已登入
-            if (!currentUser) {
-                alert(currentLang === 'km' ? 'សូមចូលគណនីជាមុនសិន មុនពេលបញ្ជាទិញ!' : 'Please login or register first before placing an order!');
-                openAuthModal('login');
-                return;
-            }
-
-            const p = products.find(item => item.id === productId);
+        // Details Modal
+        function openDetailModal(id) {
+            const p = products.find(item => item.id === id);
             if (!p) return;
-            const modelEl = document.getElementById(`modelSelect-${productId}`);
-            const qtyEl = document.getElementById(`qtyInput-${productId}`);
-            const model = modelEl ? modelEl.value : 'Universal / Standard Type';
-            const qty = parseInt(qtyEl ? qtyEl.value : p.moq) || p.moq;
+            const t = translations[currentLang];
 
-            if (qty < p.moq) {
-                alert(`Minimum Order Quantity (MOQ) for this item is ${p.moq} pcs.`);
-                return;
-            }
-
-            addToCartAction(p, qty, model);
-        }
-
-        function openDetailModal(productId) {
-            const p = products.find(item => item.id === productId);
-            if (!p) return;
-            const modal = document.getElementById('detailModal');
             const content = document.getElementById('detailModalContent');
-            const qtyLabel = currentLang === 'km' ? 'ចំនួន:' : 'Quantity:';
-            const modelLabel = currentLang === 'km' ? 'ម៉ូដែលទូរស័ព្ទ:' : 'Phone Model:';
-            const addCartText = translations[currentLang]['btn-addcart'] || 'Add to Cart';
-
             content.innerHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                    <img src="${p.image}" class="w-full h-64 object-cover rounded-2xl border">
-                    <div class="space-y-4">
-                        <span class="text-xs uppercase font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">${p.category}</span>
-                        <h3 class="text-xl font-bold text-gray-900">${p.name}</h3>
-                        <div class="text-2xl font-extrabold text-blue-600">$${p.price.toFixed(2)} <span class="text-xs font-normal text-gray-500">USD / unit</span></div>
-                        <p class="text-xs text-gray-600 leading-relaxed">${p.description}</p>
-                        <p class="text-xs text-gray-500">Minimum Order Quantity (MOQ): <strong class="text-gray-800">${p.moq} pcs</strong>. Direct factory wholesale pricing.</p>
-                        
-                        <div class="space-y-3 pt-2">
-                            <div>
-                                <label class="block text-xs font-bold text-gray-700 mb-1">${modelLabel}</label>
-                                <select id="modalPhoneModel" class="w-full border rounded-lg px-3 py-2 text-xs outline-none focus:border-blue-600 bg-white">
-                                    ${phoneModelOptionsHTML}
-                                </select>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="h-64 rounded-xl overflow-hidden bg-gray-100">
+                        <img src="${p.image}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-4 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase">${p.category}</span>
+                            <h3 class="font-bold text-lg text-gray-900 mt-2">${p.name}</h3>
+                            <p class="text-2xl font-black text-blue-600 mt-2">$${p.price.toFixed(2)} USD</p>
+                            <p class="text-xs text-gray-600 mt-3 leading-relaxed">${p.desc}</p>
+                        </div>
+                        <div class="space-y-2 pt-4 border-t">
+                            <div class="text-xs text-gray-500">
+                                <span>✔ MOQ: 10 units</span> | <span>✔ OEM Logo Available</span>
                             </div>
-                            <div>
-                                <label class="block text-xs font-bold text-gray-700 mb-1">${qtyLabel} (Min: ${p.moq})</label>
-                                <input type="number" id="modalQtyInput" value="${p.moq}" min="${p.moq}" step="1" class="w-full border rounded-lg px-3 py-2 text-xs outline-none focus:border-blue-600">
-                            </div>
-                            <button onclick="addToCartFromModal(${p.id})" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition text-xs shadow">${addCartText}</button>
+                            <button onclick="addToCart(${p.id}); closeDetailModal();" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl transition text-xs shadow">
+                                <i class="fa-solid fa-cart-plus mr-1"></i> ${t['btn-addcart']}
+                            </button>
                         </div>
                     </div>
                 </div>
             `;
-            modal.classList.remove('hidden');
+            document.getElementById('detailModal').classList.remove('hidden');
         }
 
         function closeDetailModal() {
             document.getElementById('detailModal').classList.add('hidden');
         }
 
-        function addToCartFromModal(productId) {
-            if (!currentUser) {
-                alert(currentLang === 'km' ? 'សូមចូលគណនីជាមុនសិន មុនពេលបញ្ជាទិញ!' : 'Please login or register first before placing an order!');
-                closeDetailModal();
-                openAuthModal('login');
-                return;
-            }
+        // Cart Actions
+        function addToCart(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
 
-            const p = products.find(item => item.id === productId);
-            const qty = parseInt(document.getElementById('modalQtyInput').value) || p.moq;
-            const model = document.getElementById('modalPhoneModel').value;
-            if (qty < p.moq) {
-                alert(`Minimum Order Quantity (MOQ) for this item is ${p.moq} pcs.`);
-                return;
-            }
-            addToCartAction(p, qty, model);
-            closeDetailModal();
-        }
-
-        function addToCartAction(product, qty, model) {
-            const existing = cart.find(item => item.id === product.id && item.model === model);
+            const existing = cart.find(item => item.id === id);
             if (existing) {
-                existing.qty += qty;
+                existing.qty += 1;
             } else {
-                cart.push({ ...product, qty, model });
+                cart.push({ ...p, qty: 1 });
             }
             updateCartUI();
-            toggleCartModal();
+        }
+
+        function updateCartQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+            }
+            updateCartUI();
         }
 
         function updateCartUI() {
             const countEl = document.getElementById('cartCount');
-            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-            countEl.innerText = totalQty;
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            countEl.textContent = totalCount;
 
             const listEl = document.getElementById('cartItemsList');
+            const totalEl = document.getElementById('cartTotal');
+
             if (cart.length === 0) {
-                listEl.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">Your cart is empty.</p>`;
-                document.getElementById('cartTotal').innerText = '$0.00 USD';
+                listEl.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">Your shopping cart is empty</p>`;
+                totalEl.textContent = '$0.00 USD';
                 return;
             }
 
-            let totalAmount = 0;
-            listEl.innerHTML = cart.map((item, idx) => {
+            let total = 0;
+            listEl.innerHTML = cart.map(item => {
                 const subtotal = item.price * item.qty;
-                totalAmount += subtotal;
+                total += subtotal;
                 return `
-                    <div class="flex items-center justify-between gap-3 bg-gray-50 p-2.5 rounded-xl border">
-                        <img src="${item.image}" class="w-12 h-12 object-cover rounded-lg">
-                        <div class="flex-grow">
-                            <h5 class="font-bold text-xs text-gray-900 line-clamp-1">${item.name}</h5>
-                            <p class="text-[10px] text-gray-500">Model: ${item.model} | Qty: ${item.qty}</p>
-                            <p class="text-xs font-extrabold text-blue-600">$${subtotal.toFixed(2)} USD</p>
+                    <div class="flex items-center justify-between gap-3 text-xs border-b pb-2">
+                        <img src="${item.image}" class="w-12 h-12 rounded object-cover">
+                        <div class="flex-1">
+                            <h5 class="font-bold text-gray-800 line-clamp-1">${item.name}</h5>
+                            <span class="text-blue-600 font-semibold">$${item.price.toFixed(2)} USD</span>
                         </div>
-                        <button onclick="removeFromCart(${idx})" class="text-red-400 hover:text-red-600 p-1 text-xs font-bold">✕</button>
+                        <div class="flex items-center gap-2 bg-gray-100 rounded px-2 py-1">
+                            <button onclick="updateCartQty(${item.id}, -1)" class="font-bold text-gray-600 hover:text-red-600">-</button>
+                            <span class="font-bold">${item.qty}</span>
+                            <button onclick="updateCartQty(${item.id}, 1)" class="font-bold text-gray-600 hover:text-blue-600">+</button>
+                        </div>
                     </div>
                 `;
             }).join('');
 
-            document.getElementById('cartTotal').innerText = `$${totalAmount.toFixed(2)} USD`;
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
+            totalEl.textContent = `$${total.toFixed(2)} USD`;
         }
 
         function toggleCartModal() {
-            const modal = document.getElementById('cartModal');
-            modal.classList.toggle('hidden');
+            document.getElementById('cartModal').classList.toggle('hidden');
+        }
+
+        function showOrderNotification(message) {
+            const toast = document.getElementById('orderToast');
+            if (!toast) { alert(message); return; }
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            clearTimeout(window.orderToastTimer);
+            window.orderToastTimer = setTimeout(() => toast.classList.add('hidden'), 5000);
         }
 
         function checkoutOrder() {
+            const t = translations[currentLang];
+
             if (!currentUser) {
-                alert(currentLang === 'km' ? 'សូមចូលគណនីជាមុនសិន!' : 'Please login or register first to checkout!');
+                alert(t['checkout-login-required']);
                 toggleCartModal();
                 openAuthModal('login');
                 return;
             }
 
             if (cart.length === 0) {
-                alert('Your cart is empty!');
+                alert(t['checkout-cart-empty']);
                 return;
             }
-            const name = document.getElementById('orderName').value;
-            const phone = document.getElementById('orderPhone').value;
-            const address = document.getElementById('orderAddress').value;
+
+            const name = document.getElementById('orderName').value.trim();
+            const phone = document.getElementById('orderPhone').value.trim();
+            const address = document.getElementById('orderAddress').value.trim();
 
             if (!name || !phone || !address) {
-                alert('Please fill in all shipping & contact details.');
+                alert(t['checkout-fill-info']);
                 return;
             }
 
-            alert(`🎉 Order placed successfully, ${name}!\nOur B2B sales team will contact you via ${phone} shortly to confirm shipping.`);
+            const orderNumber = `XS${Date.now().toString().slice(-10)}`;
             cart = [];
             updateCartUI();
             toggleCartModal();
+            showOrderNotification(t['checkout-success'].replace('{name}', name).replace('{order}', orderNumber));
+
+            document.getElementById('orderName').value = '';
+            document.getElementById('orderPhone').value = '';
+            document.getElementById('orderAddress').value = '';
         }
 
+        // Auth Modal
         function openAuthModal(tab) {
-            document.getElementById('authModal').classList.remove('hidden');
             switchAuthTab(tab);
+            document.getElementById('authModal').classList.remove('hidden');
         }
 
         function closeAuthModal() {
@@ -877,173 +798,301 @@
         }
 
         function switchAuthTab(tab) {
-            const loginBtn = document.getElementById('tabLoginBtn');
-            const regBtn = document.getElementById('tabRegBtn');
             const loginForm = document.getElementById('loginForm');
             const regForm = document.getElementById('registerForm');
+            const tabLoginBtn = document.getElementById('tabLoginBtn');
+            const tabRegBtn = document.getElementById('tabRegBtn');
 
             if (tab === 'login') {
-                loginBtn.className = "font-bold text-blue-600 border-b-2 border-blue-600 pb-1 text-sm";
-                regBtn.className = "font-medium text-gray-500 pb-1 text-sm";
                 loginForm.classList.remove('hidden');
                 regForm.classList.add('hidden');
+                tabLoginBtn.className = "font-bold text-blue-600 border-b-2 border-blue-600 pb-1 text-sm";
+                tabRegBtn.className = "font-medium text-gray-500 pb-1 text-sm";
             } else {
-                regBtn.className = "font-bold text-blue-600 border-b-2 border-blue-600 pb-1 text-sm";
-                loginBtn.className = "font-medium text-gray-500 pb-1 text-sm";
-                regForm.classList.remove('hidden');
                 loginForm.classList.add('hidden');
+                regForm.classList.remove('hidden');
+                tabRegBtn.className = "font-bold text-blue-600 border-b-2 border-blue-600 pb-1 text-sm";
+                tabLoginBtn.className = "font-medium text-gray-500 pb-1 text-sm";
             }
         }
 
-        // 登入必須經過已註冊帳號驗證
         function handleLogin(e) {
             e.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const pass = document.getElementById('loginPass').value.trim();
-
-            const found = registeredUsers.find(u => u.email === email && u.pass === pass);
-            if (!found) {
-                alert(currentLang === 'km' ? 'អ៊ីមែល ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ! សូមចុះឈ្មោះគណនីថ្មីជាមុនសិន។' : 'Invalid email or password! Please register an account first before logging in.');
-                return;
-            }
-
-            currentUser = found;
-            alert(found.isAdmin ? '👑 Logged in as Admin!' : `Successfully logged in, welcome back ${found.name}!`);
-            
-            if (found.isAdmin) {
-                document.getElementById('adminControlArea').classList.remove('hidden');
-            } else {
-                document.getElementById('adminControlArea').classList.add('hidden');
-            }
-
-            updateNavAuthArea();
+            const email = document.getElementById('loginEmail').value;
+            currentUser = { email: email, name: email.split('@')[0] };
+            updateAuthNav();
             closeAuthModal();
-            renderProducts();
-            renderFeatured();
+            alert(`Welcome back, ${currentUser.name}!`);
         }
 
-        // 註冊帳號
         function handleRegister(e) {
             e.preventDefault();
-            const company = document.getElementById('regCompany').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            const pass = document.getElementById('regPass').value.trim();
-
-            if (registeredUsers.some(u => u.email === email)) {
-                alert('This email is already registered! Please login directly.');
-                switchAuthTab('login');
-                return;
-            }
-
-            const newUser = { email, pass, name: company, isAdmin: false };
-            registeredUsers.push(newUser);
-            currentUser = newUser;
-
-            alert(`Account registered successfully for ${company}! You are now logged in.`);
-            updateNavAuthArea();
+            const company = document.getElementById('regCompany').value;
+            const email = document.getElementById('regEmail').value;
+            currentUser = { email: email, name: company };
+            updateAuthNav();
             closeAuthModal();
-            renderProducts();
-            renderFeatured();
+            alert(`Account created successfully for ${company}!`);
         }
 
-        function updateNavAuthArea() {
+        function updateAuthNav() {
             const area = document.getElementById('authNavArea');
             if (currentUser) {
                 area.innerHTML = `
-                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1.5 rounded-lg border border-blue-200">👤 ${currentUser.name}</span>
-                    <button onclick="logout()" class="text-gray-500 hover:text-red-600 text-xs px-2 py-1"><i class="fa-solid fa-right-from-bracket"></i></button>
+                    <span class="text-xs font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-lg flex items-center gap-1">
+                        <i class="fa-solid fa-user-check text-green-600"></i> ${currentUser.name}
+                    </span>
                 `;
             }
         }
 
-        function logout() {
-            currentUser = null;
-            isAdminEditMode = false;
-            document.getElementById('adminControlArea').classList.add('hidden');
-            document.getElementById('authNavArea').innerHTML = `
-                <button onclick="openAuthModal('login')" id="btnLoginNav" class="bg-slate-900 hover:bg-slate-800 text-white text-xs px-3 py-1.5 rounded-lg transition" data-i18n="btn-login">Login</button>
-                <button onclick="openAuthModal('register')" id="btnRegNav" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-3 py-1.5 rounded-lg transition" data-i18n="btn-register">Register</button>
-            `;
-            updateTexts();
-            renderProducts();
-            renderFeatured();
-        }
-
-        function toggleEditMode() {
-            isAdminEditMode = !isAdminEditMode;
-            const btnText = document.getElementById('editModeBtnText');
-            btnText.innerText = isAdminEditMode ? 'Disable Image Edit' : 'Enable Image Edit';
-            renderProducts();
-            renderFeatured();
-        }
-
-        function openImageEditModal(productId) {
-            currentEditProductId = productId;
-            const p = products.find(item => item.id === productId);
-            document.getElementById('previewImg').src = p.image;
-            document.getElementById('newImgUrlInput').value = p.image;
-            document.getElementById('imageEditModal').classList.remove('hidden');
-        }
-
-        function closeImageEditModal() {
-            document.getElementById('imageEditModal').classList.add('hidden');
-            currentEditProductId = null;
-        }
-
-        function saveNewProductImage() {
-            const newUrl = document.getElementById('newImgUrlInput').value;
-            if (!newUrl) {
-                alert('Please enter a valid image URL.');
-                return;
-            }
-            const p = products.find(item => item.id === currentEditProductId);
-            if (p) {
-                p.image = newUrl;
-            }
-            closeImageEditModal();
-            renderProducts();
-            renderFeatured();
-            alert('Product image updated successfully!');
-        }
-
+        // Feedback System
         function handleFeedbackSubmit(e) {
             e.preventDefault();
-            const name = document.getElementById('feedbackName').value;
+            const name = document.getElementById('feedbackName').value.trim();
             const rating = parseInt(document.getElementById('feedbackRating').value);
-            const msg = document.getElementById('feedbackMsg').value;
-            const date = new Date().toISOString().split('T')[0];
+            const msg = document.getElementById('feedbackMsg').value.trim();
 
-            feedbackList.unshift({ name, rating, msg, date });
-            renderFeedbackList();
-            document.getElementById('feedbackName').value = '';
-            document.getElementById('feedbackMsg').value = '';
-            alert('Thank you for your valuable feedback!');
+            if (name && msg) {
+                feedbacks.unshift({ name, rating, msg });
+                renderFeedbacks();
+                document.getElementById('feedbackName').value = '';
+                document.getElementById('feedbackMsg').value = '';
+                alert('Thank you for your feedback!');
+            }
         }
 
-        function renderFeedbackList() {
-            const container = document.getElementById('feedbackList');
-            if (!container) return;
-            container.innerHTML = feedbackList.map(f => `
-                <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-2">
-                    <div class="flex items-center justify-between">
-                        <h4 class="font-bold text-sm text-gray-900">${f.name}</h4>
-                        <span class="text-xs text-gray-400">${f.date}</span>
+        function renderFeedbacks() {
+            const list = document.getElementById('feedbackList');
+            list.innerHTML = feedbacks.map(f => {
+                const stars = '⭐'.repeat(f.rating);
+                return `
+                    <div class="bg-white p-4 rounded-xl border shadow-sm space-y-1 text-xs">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-gray-900">${f.name}</span>
+                            <span>${stars}</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">${f.msg}</p>
                     </div>
-                    <div class="text-amber-400 text-xs">
-                        ${'⭐'.repeat(f.rating)}
-                    </div>
-                    <p class="text-xs text-gray-600 leading-relaxed">${f.msg}</p>
-                </div>
-            `).join('');
+                `;
+            }).join('');
+        }
+    
+
+        // ===== Enhanced catalog, account and full-language functions =====
+        Object.assign(translations.en, {
+            'btn-logout': 'Logout', 'wholesale-price': 'Wholesale Price',
+            'detail-option': 'Product Option', 'detail-quantity': 'Quantity (minimum 10)',
+            'detail-minimum': 'Minimum order quantity: 10 units', 'detail-oem': 'OEM logo available',
+            'cart-empty': 'Your shopping cart is empty', 'cart-option': 'Option',
+            'login-success': 'Login successful.', 'logout-success': 'You have logged out.',
+            'register-success': 'Registration successful. You can now log in.',
+            'account-exists': 'This email is already registered.',
+            'account-not-found': 'Account not found. Please register first.',
+            'wrong-password': 'Incorrect password.', 'password-short': 'Password must contain at least 6 characters.',
+            'qty-error': 'The minimum order quantity is 10.',
+            'category-charger': 'Chargers & Power', 'category-car': 'Car Accessories',
+            'category-case': 'Cases & Protection', 'category-audio': 'Audio & Cables',
+            'product-desc': 'Industrial B2B-grade product with OEM packaging, logo printing and wholesale discount support.',
+            'checkout-login-required': 'Please log in before placing an order. Only registered members can complete checkout.',
+            'checkout-cart-empty': 'Your shopping cart is empty.',
+            'checkout-fill-info': 'Please fill in the receiver name, phone number, and delivery address.',
+            'checkout-success': 'Order completed successfully! Thank you, {name}. Order number: {order}'
+        });
+        Object.assign(translations.km, {
+            'btn-logout': 'ចាកចេញ', 'wholesale-price': 'តម្លៃលក់ដុំ',
+            'detail-option': 'ជម្រើសផលិតផល', 'detail-quantity': 'ចំនួន (អប្បបរមា ១០)',
+            'detail-minimum': 'ចំនួនបញ្ជាទិញអប្បបរមា៖ ១០ គ្រឿង', 'detail-oem': 'អាចបោះពុម្ពស្លាកសញ្ញា OEM',
+            'cart-empty': 'កន្ត្រកទំនិញរបស់អ្នកទទេ', 'cart-option': 'ជម្រើស',
+            'login-success': 'ចូលគណនីបានជោគជ័យ។', 'logout-success': 'អ្នកបានចាកចេញពីគណនី។',
+            'register-success': 'ចុះឈ្មោះបានជោគជ័យ។ ឥឡូវនេះអ្នកអាចចូលគណនីបាន។',
+            'account-exists': 'អ៊ីមែលនេះបានចុះឈ្មោះរួចហើយ។',
+            'account-not-found': 'រកមិនឃើញគណនីទេ។ សូមចុះឈ្មោះជាមុន។',
+            'wrong-password': 'ពាក្យសម្ងាត់មិនត្រឹមត្រូវ។', 'password-short': 'ពាក្យសម្ងាត់ត្រូវមានយ៉ាងតិច ៦ តួអក្សរ។',
+            'qty-error': 'ចំនួនបញ្ជាទិញអប្បបរមាគឺ ១០។',
+            'category-charger': 'ឆ្នាំងសាក និងថាមពល', 'category-car': 'គ្រឿងបន្លាស់រថយន្ត',
+            'category-case': 'ស្រោម និងការការពារ', 'category-audio': 'អូឌីយ៉ូ និងខ្សែ',
+            'product-desc': 'ផលិតផលកម្រិត B2B សម្រាប់ឧស្សាហកម្ម គាំទ្រការវេចខ្ចប់ OEM ការបោះពុម្ពស្លាកសញ្ញា និងការបញ្ចុះតម្លៃលក់ដុំ។',
+            'checkout-login-required': 'សូមចូលគណនីមុនពេលបញ្ជាទិញ។ មានតែសមាជិកដែលបានចុះឈ្មោះប៉ុណ្ណោះដែលអាចបញ្ចប់ការបញ្ជាទិញបាន។',
+            'checkout-cart-empty': 'កន្ត្រកទំនិញរបស់អ្នកទទេ។',
+            'checkout-fill-info': 'សូមបំពេញឈ្មោះអ្នកទទួល លេខទូរស័ព្ទ និងអាសយដ្ឋានដឹកជញ្ជូន។',
+            'checkout-success': 'ការបញ្ជាទិញបានបញ្ចប់ដោយជោគជ័យ! សូមអរគុណ {name}។ លេខបញ្ជាទិញ៖ {order}'
+        });
+
+        function translatedProductName(p) {
+            if (currentLang === 'en') return p.name;
+            const model = (p.name.match(/\(Model\s+[^)]+\)/) || [''])[0];
+            const watt = (p.name.match(/\d+W/) || [''])[0];
+            if (p.category === 'charger') return `ឆ្នាំងសាកលឿន GaN Pro ${watt} Type-C ${model}`.trim();
+            if (p.category === 'car') return `ជើងទ្រទូរស័ព្ទម៉ាញេទិកក្នុងរថយន្ត សាកឥតខ្សែ ${watt} ${model}`.trim();
+            if (p.category === 'case') return `ស្រោមទូរស័ព្ទថ្លា ម៉ាញេទិក ការពារការប៉ះទង្គិច ${model}`.trim();
+            return `កាសឥតខ្សែ TWS កាត់បន្ថយសំឡេងរំខាន ${model}`.trim();
         }
 
-        window.onload = function() {
-            initProducts();
-            updateTexts();
-            renderFeatured();
-            renderProducts();
-            renderFeedbackList();
+        function translatedCategory(category) {
+            return translations[currentLang][`category-${category}`] || category;
+        }
+
+        function productOptions(category) {
+            const en = {
+                charger: ['US Plug', 'EU Plug', 'UK Plug', 'AU Plug'],
+                car: ['Dashboard Mount', 'Air Vent Mount', 'Windshield Mount', 'Center Console Mount'],
+                case: ['iPhone Series', 'Samsung Galaxy Series', 'Google Pixel Series', 'Custom Phone Model'],
+                audio: ['Black', 'White', 'Blue', 'Custom Color']
+            };
+            const km = {
+                charger: ['ឌុយអាមេរិក', 'ឌុយអឺរ៉ុប', 'ឌុយអង់គ្លេស', 'ឌុយអូស្ត្រាលី'],
+                car: ['ដាក់លើតាប្លូ', 'ដាក់លើរន្ធខ្យល់', 'ដាក់លើកញ្ចក់មុខ', 'ដាក់លើកុងសូលកណ្ដាល'],
+                case: ['ស៊េរី iPhone', 'ស៊េរី Samsung Galaxy', 'ស៊េរី Google Pixel', 'ម៉ូដែលទូរស័ព្ទផ្ទាល់ខ្លួន'],
+                audio: ['ពណ៌ខ្មៅ', 'ពណ៌ស', 'ពណ៌ខៀវ', 'ពណ៌តាមការកំណត់']
+            };
+            return (currentLang === 'km' ? km : en)[category] || [];
+        }
+
+        createProductCardHTML = function(p) {
+            const t = translations[currentLang];
+            const name = translatedProductName(p);
+            return `
+                <div class="bg-white rounded-2xl border shadow-sm hover:shadow-md transition flex flex-col overflow-hidden group relative">
+                    <div class="h-48 overflow-hidden bg-gray-100 relative">
+                        <img src="${p.image}" alt="${name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <span class="absolute bottom-2 left-2 bg-slate-900/80 text-white text-[10px] px-2 py-0.5 rounded uppercase">${translatedCategory(p.category)}</span>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm line-clamp-2 leading-snug">${name}</h4>
+                            <p class="text-xs text-gray-500 mt-1 line-clamp-2">${t['product-desc']}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                            <div><span class="text-[10px] text-gray-400 block">${t['wholesale-price']}</span><span class="text-blue-600 font-black text-base">$${p.price.toFixed(2)} USD</span></div>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="openDetailModal(${p.id})" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs px-2.5 py-1.5 rounded-lg transition font-medium">${t['btn-details']}</button>
+                                <button onclick="addToCart(${p.id}, 10, productOptions('${p.category}')[0])" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-3 py-1.5 rounded-lg transition font-medium shadow-sm flex items-center gap-1"><i class="fa-solid fa-cart-plus"></i> ${t['btn-addcart']}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
         };
+
+        openDetailModal = function(id) {
+            const p = products.find(item => item.id === id); if (!p) return;
+            const t = translations[currentLang], name = translatedProductName(p);
+            const options = productOptions(p.category).map((o,i)=>`<option value="${o}">${o}</option>`).join('');
+            document.getElementById('detailModalContent').innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="h-64 rounded-xl overflow-hidden bg-gray-100"><img src="${p.image}" class="w-full h-full object-cover"></div>
+                    <div class="space-y-4">
+                        <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase">${translatedCategory(p.category)}</span>
+                        <h3 class="font-bold text-lg text-gray-900">${name}</h3>
+                        <p class="text-2xl font-black text-blue-600">$${p.price.toFixed(2)} USD</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">${t['product-desc']}</p>
+                        <div><label class="block text-xs font-bold mb-1">${t['detail-option']}</label><select id="detailProductOption" class="w-full border rounded-lg px-3 py-2 text-xs bg-white">${options}</select></div>
+                        <div><label class="block text-xs font-bold mb-1">${t['detail-quantity']}</label><input id="detailQty" type="number" min="10" step="1" value="10" class="w-full border rounded-lg px-3 py-2 text-xs"></div>
+                        <div class="text-xs text-gray-500"><span>✔ ${t['detail-minimum']}</span><br><span>✔ ${t['detail-oem']}</span></div>
+                        <button onclick="addDetailSelectionToCart(${p.id})" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl transition text-xs shadow"><i class="fa-solid fa-cart-plus mr-1"></i> ${t['btn-addcart']}</button>
+                    </div>
+                </div>`;
+            document.getElementById('detailModal').classList.remove('hidden');
+        };
+
+        function addDetailSelectionToCart(id) {
+            const qty = parseInt(document.getElementById('detailQty').value, 10);
+            const option = document.getElementById('detailProductOption').value;
+            if (!Number.isInteger(qty) || qty < 10) { alert(translations[currentLang]['qty-error']); return; }
+            addToCart(id, qty, option); closeDetailModal();
+        }
+
+        addToCart = function(id, qty = 10, option = '') {
+            const p = products.find(item => item.id === id); if (!p) return;
+            qty = Math.max(10, parseInt(qty, 10) || 10);
+            option = option || productOptions(p.category)[0] || '';
+            const key = `${id}|${option}`;
+            const existing = cart.find(item => item.cartKey === key);
+            if (existing) existing.qty += qty;
+            else cart.push({ ...p, cartKey: key, qty, option });
+            updateCartUI();
+        };
+
+        updateCartQty = function(key, change) {
+            const item = cart.find(i => i.cartKey === key); if (!item) return;
+            item.qty += change;
+            if (item.qty < 10) cart = cart.filter(i => i.cartKey !== key);
+            updateCartUI();
+        };
+
+        updateCartUI = function() {
+            const t = translations[currentLang];
+            document.getElementById('cartCount').textContent = cart.reduce((sum,item)=>sum+item.qty,0);
+            const listEl=document.getElementById('cartItemsList'), totalEl=document.getElementById('cartTotal');
+            if (!cart.length) { listEl.innerHTML=`<p class="text-xs text-gray-400 text-center py-6">${t['cart-empty']}</p>`; totalEl.textContent='$0.00 USD'; return; }
+            let total=0;
+            listEl.innerHTML=cart.map(item=>{ total += item.price*item.qty; const safeKey=item.cartKey.replace(/'/g,"\\'"); return `
+                <div class="flex items-center justify-between gap-3 text-xs border-b pb-2">
+                    <img src="${item.image}" class="w-12 h-12 rounded object-cover"><div class="flex-1"><h5 class="font-bold text-gray-800 line-clamp-1">${translatedProductName(item)}</h5><span class="block text-gray-500">${t['cart-option']}: ${item.option}</span><span class="text-blue-600 font-semibold">$${item.price.toFixed(2)} USD</span></div>
+                    <div class="flex items-center gap-2 bg-gray-100 rounded px-2 py-1"><button onclick="updateCartQty('${safeKey}',-1)" class="font-bold">−</button><span class="font-bold">${item.qty}</span><button onclick="updateCartQty('${safeKey}',1)" class="font-bold">+</button></div>
+                </div>`; }).join('');
+            totalEl.textContent=`$${total.toFixed(2)} USD`;
+        };
+
+        function getRegisteredUsers() { try { return JSON.parse(localStorage.getItem('xiqisiqi_users') || '[]'); } catch(e) { return []; } }
+        function saveRegisteredUsers(users) { localStorage.setItem('xiqisiqi_users', JSON.stringify(users)); }
+
+        handleRegister = function(e) {
+            e.preventDefault(); const t=translations[currentLang];
+            const company=document.getElementById('regCompany').value.trim();
+            const email=document.getElementById('regEmail').value.trim().toLowerCase();
+            const password=document.getElementById('regPass').value;
+            if (password.length < 6) { alert(t['password-short']); return; }
+            const users=getRegisteredUsers();
+            if (users.some(u=>u.email===email)) { alert(t['account-exists']); return; }
+            users.push({company,email,password}); saveRegisteredUsers(users);
+            alert(t['register-success']); switchAuthTab('login');
+            document.getElementById('loginEmail').value=email; document.getElementById('loginPass').value='';
+        };
+
+        handleLogin = function(e) {
+            e.preventDefault(); const t=translations[currentLang];
+            const email=document.getElementById('loginEmail').value.trim().toLowerCase();
+            const password=document.getElementById('loginPass').value;
+            const user=getRegisteredUsers().find(u=>u.email===email);
+            if (!user) { alert(t['account-not-found']); return; }
+            if (user.password !== password) { alert(t['wrong-password']); return; }
+            currentUser={email:user.email,name:user.company}; sessionStorage.setItem('xiqisiqi_current_user',JSON.stringify(currentUser));
+            updateAuthNav(); closeAuthModal(); alert(t['login-success']);
+        };
+
+        function logoutUser() {
+            currentUser=null; sessionStorage.removeItem('xiqisiqi_current_user'); updateAuthNav(); alert(translations[currentLang]['logout-success']);
+        }
+
+        updateAuthNav = function() {
+            const area=document.getElementById('authNavArea'), t=translations[currentLang];
+            if (currentUser) area.innerHTML=`<span class="text-xs font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-lg"><i class="fa-solid fa-user-check text-green-600 mr-1"></i>${currentUser.name}</span><button onclick="logoutUser()" class="bg-red-600 hover:bg-red-500 text-white text-xs px-3 py-1.5 rounded-lg">${t['btn-logout']}</button>`;
+            else area.innerHTML=`<button onclick="openAuthModal('login')" class="bg-slate-900 hover:bg-slate-800 text-white text-xs px-3 py-1.5 rounded-lg">${t['btn-login']}</button><button onclick="openAuthModal('register')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-3 py-1.5 rounded-lg">${t['btn-register']}</button>`;
+        };
+
+        const originalUpdateLanguageStrings = updateLanguageStrings;
+        updateLanguageStrings = function() {
+            originalUpdateLanguageStrings();
+            updateAuthNav(); updateCartUI();
+            document.documentElement.lang = currentLang === 'km' ? 'km' : 'en';
+            const placeholders = currentLang === 'km' ? {
+                feedbackName:'ឧ. ឈ្មោះរបស់អ្នក / ក្រុមហ៊ុន', feedbackMsg:'សរសេរបទពិសោធន៍របស់អ្នក...',
+                loginEmail:'អ៊ីមែលរបស់អ្នក', loginPass:'ពាក្យសម្ងាត់', regCompany:'ឈ្មោះក្រុមហ៊ុន / ឈ្មោះ', regEmail:'អ៊ីមែលរបស់អ្នក', regPass:'ពាក្យសម្ងាត់យ៉ាងតិច ៦ តួ',
+                orderName:'ឈ្មោះអ្នកទទួល', orderPhone:'+855 66 267 927', orderAddress:'ផ្លូវ ទីក្រុង ប្រទេស...'
+            } : {feedbackName:'e.g. John Doe / Tech Store',feedbackMsg:'Share your experience with our wholesale products...',loginEmail:'your@email.com',loginPass:'Password',regCompany:'Tech Store LLC',regEmail:'your@email.com',regPass:'At least 6 characters',orderName:'John Doe',orderPhone:'+855 66 267 927',orderAddress:'Street, City, Country...'};
+            Object.entries(placeholders).forEach(([id,val])=>{const el=document.getElementById(id); if(el) el.placeholder=val;});
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            try { currentUser=JSON.parse(sessionStorage.getItem('xiqisiqi_current_user') || 'null'); } catch(e) { currentUser=null; }
+            updateAuthNav(); updateCartUI();
+        });
+
     </script>
+
+    <!-- Order Notification Toast -->
+    <div id="orderToast" class="fixed top-5 left-1/2 -translate-x-1/2 z-[100] hidden max-w-md w-[calc(100%-2rem)] bg-green-600 text-white px-5 py-4 rounded-xl shadow-2xl text-sm font-bold text-center"></div>
+
 </body>
 </html>
